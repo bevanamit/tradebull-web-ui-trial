@@ -1,0 +1,83 @@
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<div class="page">
+        <mat-toolbar class="mattool1">
+            <!-- <mat-toolbar class="mat-elevation-z5"></mat-toolbar> -->
+            <div class="logo-div" >
+               <div class="row" style="justify-content: center;">
+                    <img class="img" style="width: 90%;" src="../../assets/images/tradebullz_logo.png" alt="tradebull">
+                    <!-- <a routerLink='/home'>
+                        <img class="img" style="width: 55%; padding: 7px 10px 7px 0px;" src="../../assets/images/tradebullz_logo_name.png" alt="tradebull">
+                    </a> -->
+                    <!-- <form>
+                        <div class="col-sm-3" id="toggleIconRight" style="margin-left: 20px;">
+                            <a mat-button (click)="onToggle()" class="mobile-menu">
+                                <i class="feather-toggle-right">
+                                </i>
+                            </a>
+                        </div>
+                        <div class="col-sm-3" id="toggleIconLeft" style="display: none; margin-left: 20px;">
+                            <a mat-button (click)="onToggle()" class="mobile-menu">
+                                <i class="feather-toggle-left">
+                                </i>
+                            </a>
+                        </div>
+                    </form> -->
+                </div> 
+            </div>
+            <span class="example-spacer"></span>
+            <div class="align-notifier" style="margin-left:20px;">
+                <app-notifier></app-notifier>
+            </div>
+            <div class="align-notifier" style="margin-right: 20px;">
+                <app-user-config></app-user-config>
+            </div>
+        </mat-toolbar>
+        <mat-toolbar class="mattool2">
+            <!-- <mat-toolbar class="mat-elevation-z5"></mat-toolbar> -->
+            <div style="width:15%; height: 100%; left:auto">
+                    <form style="margin: 15px;">
+                        <div class="col-sm-3" id="toggleIconRight" style="display: none; margin-left: 20px;">
+                            <a mat-button (click)="onToggle()" class="mobile-menu">
+                                <i class="feather-toggle-right">
+                                </i>
+                            </a>
+                        </div>
+                        <div class="col-sm-3" id="toggleIconLeft" style="margin-left: 20px;">
+                            <a mat-button (click)="onToggle()" class="mobile-menu">
+                                <i class="feather-toggle-left">
+                                </i>
+                            </a>
+                        </div>
+                    </form>
+                </div>
+                <div style="width:70%;">
+                    <a routerLink='/home'>
+                        <img class="img" style="width: 250px; padding: 0px;" src="../../assets/images/tradebullz_logo.png" alt="tradebull">
+                    </a>       
+                </div>
+                <div style="width:15%; right:auto; font-size: 20px;">
+                    <a (click)="showMenu();" style="justify-content: right;"> <i style="color:black;" class="feather-more-horizontal"></i></a>
+                </div> 
+        </mat-toolbar>
+    <div class="page__main" style="background-color: #f2f7fb">
+        <div id="mytoggle" class="toggle">
+            <app-side-nav></app-side-nav>
+        </div>
+        
+        <!-- <div style="width: 3%"></div> -->
+        <div style="width:100%;">
+            <mat-toolbar id="mattool3">
+                <div class="align-notifier" style="margin-right:20px; float:right; margin-top:15px">
+                    <app-user-config></app-user-config>
+                </div>
+                <div class="align-notifier" style="float:right; margin-top:15px">
+                    <app-notifier></app-notifier>
+                </div>
+            </mat-toolbar>
+            <router-outlet #main="outlet"></router-outlet>
+        </div>
+    </div>
+</div>
+<div class="alert-width">
+    <app-alert></app-alert>
+</div>

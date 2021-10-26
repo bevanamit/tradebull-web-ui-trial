@@ -1,0 +1,171 @@
+:host {
+  display: block;
+  height: 100%;
+  font-size: 16px;
+}
+
+.page {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  &__main {
+    display: flex;
+    
+    height: 100%;
+    //width: 100%;
+    background-color: whitesmoke;
+    overflow: auto;
+  
+
+    //& > main {
+    //  overflow: auto;
+    //  height: 100%;
+    //  width: 100%;
+    //}
+  }
+}
+
+// @media screen and (max-width: 850px) {
+//   .logo-div .row .img {
+//     width: 120px;
+//  }
+// }
+
+
+.align-notifier {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+ 
+}
+
+.nav-align {
+  display: flex;
+  justify-content: flex-end;
+  align-items: baseline;
+  background-color: white;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.nav-logo {
+  height: 50%;
+  width: 20px;
+}
+
+.logo-div {
+  height:100%; 
+  width: 250px;
+  //background: #263544;
+}
+
+a {  
+  color:black;
+  font-family: "Quicksand",sans-serif;
+  //font-size: 13px;
+  display: flex;
+  justify-content: center;
+  margin-left: 10px;
+  //align-items: left;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+}
+
+img {
+  vertical-align: middle ;  
+  max-width: 100%;
+    height: auto;
+
+}
+
+
+mat-toolbar {
+  background: #c3e1f7;
+  padding: 0px 0px;
+  min-height: 73px;
+}
+
+.mobile-menu {
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 16px;
+  justify-content: flex-end;  
+  width: 40px;
+}
+
+.navbar {
+  width: 100%;
+  position: relative;
+  -webkit-box-align: center;
+  display: flex;
+  float: left;
+  height: 73px;
+  text-align: center;
+  text-transform: uppercase;
+  padding: 20px 10px;
+  box-shadow: 0 4px 4px -4px rgb(0 0 0 / 10%);
+  justify-content: center;
+
+}
+
+@media screen and (max-width: 992px) {
+.mattool1 {
+   display: none; 
+}
+
+#mytoggle {
+  display: none ;
+ // background-color: #263544;
+}
+}
+
+@media not screen and (max-width: 992px) {
+.mattool2 {
+  display: none; 
+}
+
+#mattool3 {
+  display: none !important; 
+}
+
+#mytoggle {
+  display: block !important;
+} 
+}
+
+
+.mobile-toggle {
+    position: absolute;
+    font-size: 16px;
+    line-height: 4.4;
+    right: auto;
+    left: 0;
+    top: 0;
+    width: 60px;
+}
+
+.mobile.options {
+  display: block;
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-size: 16px;
+    line-height: 4.4;
+    width: 60px;
+}
+
+#mattool3 {
+  z-index: 2;
+  position: absolute;
+  display: none;
+}
+
+#mytoggle {
+  z-index: 1;
+}

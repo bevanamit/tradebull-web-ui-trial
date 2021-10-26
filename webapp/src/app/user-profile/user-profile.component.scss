@@ -1,0 +1,101 @@
+
+.align-elements {
+  margin-right: 0.5rem
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+mat-label {
+  //  color:#333;
+  font-weight: 400;
+  font-size: 14px;        
+}
+
+.main-div{
+ // height: 100%;
+  //width: 83.5%;
+  //position: relative;
+  margin-left: 250px;
+  }
+
+.mat-card-div {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+
+mat-card-title {
+  text-align: center; 
+  font-size:30px; 
+  font-family: Quicksand,sans-serif;
+  // margin-bottom: 30px;
+}
+
+mat-card-subtitle {
+  font-weight:500; 
+  font-size:15px; 
+   font-family: sans-serif;
+}
+
+.example-form {
+ // margin: 0 40px;
+  min-width: 150px;
+  max-width: 500px;
+  // width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+.cardCss {
+  //position: fixed;
+  max-width: 40vw;
+  padding: 20px;
+  min-height: 55vh;
+  margin: 60px 30px 30px 30px; 
+}
+
+mat-label {
+  //  color:#333;
+  font-weight: 400;
+  font-size: 14px;        
+}
+
+
+i {
+  size: 50px;
+}
+
+::ng-deep {
+  .mat-form-field .mat-form-field-flex{
+    background-color: white; 
+  }
+}
+
+::ng-deep {
+  .mat-form-field-appearance-fill .mat-form-field-flex {
+    padding: 0em !important;
+  }
+}
+
+
+::ng-deep {
+    .mat-card-header .mat-card-header-text {
+      margin: 0 0;
+  }
+} 
+
+@media screen and (max-width: 992px) { 
+  .main-div
+  {
+    margin-left: 0px;
+}
+.cardCss {
+  min-width: 85vw;
+  padding: 20px;
+  min-height: 55vh;
+}
+}

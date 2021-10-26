@@ -1,0 +1,24 @@
+<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+<div style="margin-right: 3rem">
+    <i mat-button class="feather-bell" (click)="hideUserMenu=false" cdk-overlay-origin
+    #accountOverlay="cdkOverlayOrigin">
+        <span class="fa fa-circle"></span>
+        <span class="num">2</span>
+    </i>
+</div> 
+<ng-template cdkConnectedOverlay [cdkConnectedOverlayOrigin]="accountOverlay"
+             [cdkConnectedOverlayOpen]="!hideUserMenu" cdkConnectedOverlayHasBackdrop="true"
+             cdkConnectedOverlayBackdropClass="transparent-backdrop"
+             (backdropClick)="hideUserMenu=true" (detach)="hideUserMenu=true" 
+             [cdkConnectedOverlayPositionStrategy] = "css"
+             [cdkConnectedOverlayPositions]="[{originX:'start',originY:'bottom',overlayX:'end',overlayY:'top',offsetX:50,offsetY:27}]">
+    <div class="user-menu" (window:resize)="onResize($event)">
+        <div class="user-menu__container"> 
+           <!-- <div class="diamond"></div> -->
+            <span class="user-menu__item" mat-menu-item><a routerLink="/home/settings/payment" (click)="hideUserMenu=true" >Your free trial will expire on {{expiryDate | appDate}}. <span style="color:#0056b3">Renew now!</span></a></span>
+            <hr>
+            <span *ngIf = "!(status === 'BROKER')" class="user-menu__item" mat-menu-item ><a routerLink="/home/settings/broker" (click)="hideUserMenu=true">Broker not Configured, Add Broker !!</a></span>
+    <!--    <button mat-menu-item (click)="test(element.aid)">Test alert</button>-->
+        </div>
+    </div>
+</ng-template>

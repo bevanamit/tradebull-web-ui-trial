@@ -1,0 +1,218 @@
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- <div #load style="display:flex; justify-content:center; width: 100%; height: 400px;">
+    <div>
+        <img src="../../../assets/images/tbz_spinner.png" id="load" alt="Logo">
+    </div> 
+</div> -->
+<div class= "chart">
+    <div class="page-header card">
+        <div class="row align-tems-end">
+            <div class="col-lg-7">
+                <div class="page-header-title">
+                    <i class="fas fa-shopping-bag bg-c-blue"></i>
+                    <div class="d-inline">
+                        <h5 style="padding: 10px;">Choose a pricing plan that fits your needs</h5>
+                        <!-- <span>View your summary</span>                 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="row" style="display: inline-flex; justify-content: space-between; ">
+        <ul style="margin-top:5px;" *ngFor="let share of filteredShareMulti | async">
+                <div class="col">
+                    <div class="pricing-container">
+                        <div class="pricing-wrapper">
+                            <div class="pricing-slide">
+                                <p style="word-wrap: break-word; width:50%">{{share.name}}</p>
+                                <li *ngFor="let share of filteredShareMulti | async">
+                                    <div class="row" style="margin: 5px 5px">
+                                        <p>{{share.id}}</p>
+                                    </div>
+                                </li>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </ul> 
+    </div> -->
+    <form [formGroup]="pricingForm">
+        <div class="row" style="display:flex; margin-left: 35px; margin-top:30px " ng-snippet="subscription-plans">
+            <div style="display: flex; align-items: center;">
+                <p class="pricing__type-title">Type of subscription plans</p>
+            </div>
+            <ng-container [ngTemplateOutlet]="itemTemplate">
+            </ng-container>
+            <ng-template #itemTemplate>
+                <div style="align-items: center!important; display: flex">
+                    <div class="checkbox">
+                        <label>    
+                            <span><input class="plans" id="MONTHLY" type="radio" name="pricingRadio" value= "MONTHLY" [checked] = "planType === 'MONTHLY'" (change)="onItemChange($event.target.value)"> Monthly</span>
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <span><input class="plans" id="QUARTERLY" type="radio" name="pricingRadio" value= "QUARTERLY" [checked] = "planType === 'QUARTERLY'" (change)="onItemChange($event.target.value)"> Quarterly</span>
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <span><input class="plans" id="ANNUALY" type="radio" name="pricingRadio" value= "ANNUALY" [checked] = "planType === 'ANNUALY'" (change)="onItemChange($event.target.value)">Yearly</span>
+                        </label>
+                    </div>
+                </div>
+            </ng-template> 
+            <!-- <div style="align-items: center!important; display: flex">
+                <div class="checkbox">
+                    <label>    
+                        <span><input class="plans" type="radio" name="pricingRadio" value= "MONTHLY" checked (change)="onItemChange($event.target.value)"> Monthly</span>
+                    </label>
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <span><input class="plans" type="radio" name="pricingRadio" value= "QUARTERLY" (change)="onItemChange($event.target.value)"> Quarterly</span>
+                    </label>
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <span><input class="plans" type="radio" name="pricingRadio" value= "YEARLY" (change)="onItemChange($event.target.value)">Yearly</span>
+                    </label>
+                </div>
+            </div> -->
+        </div>
+        <div style= "color: black;">
+            <ul id="plans">
+                <li *ngFor="let share of list, let i = index;" style="flex-grow: 1; flex-basis: 0;">
+                    <div class="pricing-container">
+                        <div class="pricing-wrapper">
+                            <div class="pricing-slide">
+                                <div class="col">
+                                    <!-- <p class= "header1" style="word-wrap: break-word;">{{share.col}}</p>
+                                    <p class="header2" style="word-wrap: break-word;">{{share.col}}</p> -->
+                                    <!-- <div class="row" style="margin: 5px 5px; display: block;">
+                                        <p class="lineitems">{{share.name2}}</p>
+                                    </div>
+                                    <div class="row" style="margin: 5px 5px; display: block;">
+                                    <p class="lineitems">{{share.name3}}</p>
+                                    </div>
+                                    <div class="row" style="margin: 5px 5px; display: block;">
+                                        <p class="lineitems">{{share.name4}}</p>
+                                    </div>
+                                    <div class="row" style="margin: 5px 5px; display: block;">
+                                        <p class="lineitems">{{share.name5}}</p>
+                                    </div>
+                                    <div class="row" style="margin: 5px 5px; display: block;">
+                                        <p class="lineitems">{{share.name6}}</p> 
+                                    </div>
+                                    <div class="row" style="margin: 5px 5px; display: block;">
+                                        <p class="lineitems">{{share.name7}}</p>
+                                    </div> -->
+    
+                                    <li *ngFor="let col of share.col, let i = index;">
+                                        <div class="row" style="margin: 5px 5px; display: block;">
+                                            <!-- <p class="lineitems">{{col}}</p> -->
+                                            <ng-container [ngSwitch]="true">
+                                                <div *ngSwitchCase="col==='Yes'">
+                                                    <i class="fa fa-check pricingcheckGreen" aria-hidden="true"></i>
+                                                </div>
+                                                <div *ngSwitchCase="col==='No'">
+                                                    <i class="fa fa-times pricingcheckRed" aria-hidden="true"></i>
+                                                </div>
+                                                <div *ngSwitchDefault>
+                                                    <!-- <div *ngIf = "" -->
+                                                    <p class="lineitems">{{col}}</p>
+                                                </div>  
+                                            </ng-container>
+                                        </div>
+                                    </li>
+                                    <div class="row" style="margin: 5px 5px; display: block;">
+                                        <button class="btn btn-primary" (click)="subscribe(share.Tier[0], share.col[0], share.col[1])">Choose Plan</button>
+                                        <p style="display:none; height: 30px"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </form>
+    <ng-template #paymentDialog>
+        <form>
+            <div>
+                <button class="close" mat-button (click)="dialogRef.close(false)">X</button>
+                <h5 class="modal-title">{{planName}}</h5>
+            </div>
+            <div class="modal-body-line">
+                <div class="half">
+                    <p class="plan">Summary of subscription plan :</p>
+                </div>
+                <div class="modal-sub-title">
+                    <p>{{plan}}</p>
+                </div>
+            </div>
+            <hr style="margin:5px">
+            <div class="modal-body-line">
+                <div class="half">
+                    <p class="plan">Total :</p>
+                </div>
+                <div class="modal-sub-title">
+                    <p>{{plancost}}</p>
+                </div>
+            </div>
+            <hr style="margin:5px">
+            <div class="modal-body-line">
+                <div class="half">
+                    <p class="plan"> Type of subscription:</p>
+                </div>
+                <div class="half">
+                    <ng-container [ngTemplateOutlet]="itemTemplate">
+                    </ng-container>
+                    <!-- <div class="row" style="display:flex;">
+                        <div style="align-items: center!important; display: flex">
+                            <div class="checkbox">
+                                <label>    
+                                    <span><input class="plans" type="radio" name="pricingRadio" value= "MONTHLY" checked (change)="onItemChange($event.target.value)"> Monthly</span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <span><input class="plans" type="radio" name="pricingRadio" value= "QUARTERLY" (change)="onItemChange($event.target.value)"> Quarterly</span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <span><input class="plans" type="radio" name="pricingRadio" value= "YEARLY" (change)="onItemChange($event.target.value)">Yearly</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+            <hr style="margin:5px">
+            <div class="modal-body-line">
+                <p class="modal-payment"> Payment option</p>
+            </div> 
+            <div class="modal-body-line">
+                <a class="btn btn-danger" type="button" (click)="pay();">Add Payment Method</a>
+            </div>
+            <!-- <div class="modal-body-line">
+                <div class="half">
+                    <p class="plan"> Type of subscription:</p>
+                </div>
+            </div> -->
+        </form>
+    </ng-template>  
+    <ng-template #freeTrial>
+        <button class="close" mat-button (click)="this.dialogRef.close(true)">X</button>
+        <h2>Please choose Free Plan(15 days Trail) to proceed further</h2>
+        <a class="btn btn-danger" type="button" (click)="updateFreeTier();">Choose Free Plan</a>
+    </ng-template> 
+    <ng-template #freeSubscribed>
+        <button class="close" mat-button (click)="this.dialogRef.close(false)">X</button>
+        <h2>You have already been subscribed for Free Plan(15 days Trail). Plan validity starts from x to y.</h2>
+    </ng-template>
+</div>
+
+
+

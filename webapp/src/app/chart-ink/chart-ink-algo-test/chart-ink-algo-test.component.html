@@ -1,0 +1,29 @@
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<button class="close" mat-button (click)="close()">X</button>
+<!--<app-alert></app-alert>-->
+<h1 matDialogTitle>Test Chart-Ink Alert</h1>
+<hr>
+<div matDialogContent>
+    <form [formGroup]="alertTestForm">
+        <mat-form-field class="col-sm-8 offset-sm-0">
+            <mat-select formControlName="shareName" placeholder="Select from NSE top 100."
+                        [title]="" [multiple]="true" #multiSelect>
+                <mat-option>
+                    <ngx-mat-select-search placeholderLabel="Select" formControlName="searchString" noEntriesFoundLabel="'no matching shares found'"></ngx-mat-select-search>
+                    <mat-icon ngxMatSelectSearchClear>delete</mat-icon>
+                </mat-option>
+                <mat-option *ngFor="let share of filteredShareMulti | async" [value]="share">
+                    {{share.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </form>
+</div>
+<div matDialogActions class="action-button-align">
+    <button class="btn btn-light align-elements" (click)="close()">Cancel
+    </button>
+    <button class="btn btn-primary" cdkFocusInitial [disabled]="alertTestForm.invalid"
+            (click)="testAlert()">
+        Test Alert
+    </button>
+</div>

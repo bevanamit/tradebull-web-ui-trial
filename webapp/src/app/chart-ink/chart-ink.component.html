@@ -1,0 +1,383 @@
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<div class= "chart">
+    <div class="page-header card">
+        <div class="row align-tems-end">
+            <div class="col-lg-7">
+                <div class="page-header-title">
+                    <i class="fas fa-rupee-sign bg-c-blue"></i>
+                    <div class="d-inline">
+                        <h5 style="padding: 10px;">Trade Actions for Chart-ink Alerts</h5>
+                        <!-- <span>View your summary</span>                 -->
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5" style="margin-top: 10px;">
+                <div class="float-right">
+                    <div style="display: flex">
+                        <div *ngIf="(chartInkData?.dataSource?.value?.length >= 10)"
+                            matTooltip="Can not add more than 10 Alerts"
+                            matTooltipPosition="before">
+                            <button type="button" class="btn btn-primary align-elements"
+                                    [disabled]="chartInkData?.dataSource?.value?.length >= 10"
+                                    (click)="add()">
+                                <i class="fa fa-plus" aria-hidden="true"></i>Add
+                            </button>
+                        </div>
+                        <button type="button" class="btn btn-primary align-elements"
+                                *ngIf="!(chartInkData?.dataSource?.value?.length >= 10)"
+                                (click)="add()">
+                            <i class="fa fa-plus" aria-hidden="true"></i>Add
+                        </button>
+                        <button type="button" class="btn btn-danger align-elements"
+                                [disabled]="!chartInkData?.dataSource?.value?.length"
+                                (click)="deleteAll()"><i class="fas fa-trash-alt" aria-hidden="true"></i>Delete All
+                        </button>
+                        <button type="button" class="btn btn-warning"
+                                [disabled]="!chartInkData?.dataSource?.value?.length || disableAlerts"
+                                (click)="disableAll()"><i class="fa fa-ban" aria-hidden="true"></i>Disable
+                                All
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="view">
+        <div class="primary-class">
+            <div >
+                <div class="row" style="display:flex; flex-wrap:wrap; margin-left: 15px; margin-right: 15px;">
+                    <div class="col-xl-12 col-md-12">
+                        <mat-card style="margin-top: 2rem;">
+                            <div *ngIf="chartInkData; else load">
+                                <div *ngIf="webHookUrl" class="card-header">
+                                    <i mat-button class="fa fa-info-circle info-icon cursor" style="margin-top: 1rem;"
+                                    aria-hidden="true" (click)="tooltip.toggle()"
+                                    #tooltip="matTooltip"
+                                    matTooltip = "Chartink connector link"
+                                    matTooltipPosition="above"></i>&nbsp;
+                                    <mat-label style="font-size: 15px;">{{webHookUrl}} </mat-label><i style="cursor: pointer;" class="far fa-copy copy_clipboard" title="copy"
+                                    [cdkCopyToClipboard]="webHookUrl">&nbsp;</i>
+                                </div>
+                                <div class="col-lg-12 col-xl-12" style="padding:0px">
+                                    <section class="table-responsive">
+                                        <table mat-table [dataSource]="chartInkData" *ngIf="chartInkData">
+                                            
+                                                <ng-container matColumnDef="name">
+                                                    <th mat-header-cell *matHeaderCellDef> Alert Name </th>
+                                                    <td mat-cell *matCellDef="let element"> {{element.an}} </td>
+                                                    </ng-container>
+                                                
+                                                    <ng-container matColumnDef="des">
+                                                    <th mat-header-cell *matHeaderCellDef> Description </th>
+                                                    <td mat-cell *matCellDef="let element" style="max-width: 250px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;"> 
+                                                        <span style="max-width:200px;" matTooltip="{{element.des}}"
+                                                        matTooltipPosition="above">{{element.des}}</span></td>
+                                                    </ng-container>
+                                                
+                                                    <ng-container matColumnDef="tranType">
+                                                    <th mat-header-cell *matHeaderCellDef> Type </th>
+                                                    <td mat-cell *matCellDef="let element"> {{element.tt}} </td>
+                                                    </ng-container>
+                                                
+                                                    <ng-container matColumnDef="loss">
+                                                    <th mat-header-cell *matHeaderCellDef> Loss(%) </th>
+                                                    <td mat-cell *matCellDef="let element"> {{element.lp}} </td>
+                                                    </ng-container>
+                    
+                                                    <ng-container matColumnDef="profit">
+                                                        <th mat-header-cell *matHeaderCellDef> Profit(%) </th>
+                                                        <td mat-cell *matCellDef="let element"> {{element.pp}} </td>
+                                                    </ng-container>
+                    
+                                                    <ng-container matColumnDef="qty">
+                                                        <th mat-header-cell *matHeaderCellDef> Order Quantity </th>
+                                                        <td mat-cell *matCellDef="let element"> {{element.qt}} </td>
+                                                    </ng-container>
+                    
+                                                    <ng-container matColumnDef="status">
+                                                        <th mat-header-cell *matHeaderCellDef> Status </th>
+                                                        <td mat-cell *matCellDef="let element">
+                                                            <div>
+                                                                <mat-slide-toggle *ngIf = "broker" color=primary [checked]="element.act" 
+                                                                                (change)="changed(element, $event)"></mat-slide-toggle>
+                                                                <mat-slide-toggle *ngIf= "!broker" color=primary [checked]="element.act" [disabled]="!broker"
+                                                                            matTooltip="Enabled only if broker details added"
+                                                                                matTooltipPosition="above"
+                                                                                (change)="changed(element, $event)"></mat-slide-toggle>
+                                                            </div>
+                                                        </td>
+                                                    </ng-container>
+                    
+                                                    <ng-container matColumnDef="action">
+                                                        <th mat-header-cell *matHeaderCellDef> Action </th>
+                                                        <td mat-cell *matCellDef="let element;let i =index;">
+                                                            <i class="fa fa-ellipsis-v cursor highlight-on-hover" style= "padding: 0px 0px 0px 4px;" aria-hidden="true"
+                                                                [matMenuTriggerFor]="appMenu"></i>
+                                                                <mat-menu #appMenu="matMenu">
+                                                                    <button mat-menu-item (click)="deleteAlert(element.aid, element.an)">
+                                                                        Delete
+                                                                    </button>
+                                                                    <button mat-menu-item [disabled]="element.act"
+                                                                            (click)="add(element.aid, true)">View/Edit
+                                                                    </button>
+                                                                    <button mat-menu-item [disabled]="!broker" (click)="test(element.aid)">Test alert</button>
+                                                                </mat-menu>
+                                                        </td>
+                                                    </ng-container>
+                                                    <tr mat-header-row *matHeaderRowDef="addedAlgoTable;sticky:true"></tr>
+                                                    <tr #chartInk mat-row *matRowDef="let row; columns: addedAlgoTable;" class="pointer"
+                                                    [ngClass]="{'selected':chartInkData.isSelected(row)}"></tr>  
+                                            
+                                        </table>
+                                        <span *ngIf="!(chartInkData?.dataSource?.value?.length)" class="no-algos">
+                                            Alerts not added. Click add to create new Alert.
+                                        </span>
+                                    </section>
+                                </div>
+                            </div>
+                            <ng-template #load>
+                                <div style="display:flex; justify-content:center; width: 100%; height: 400px;">
+                                    <h2>Loading...</h2>
+                                    <div>
+                                        <img src="../../assets/images/tbz_spinner.png" id="load" alt="Logo">
+                                        <!-- <span class="sr-only"></span> -->
+                                    </div> 
+                                </div>
+                            </ng-template>
+                        </mat-card>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <ng-template #deleteDialog>
+        <button class="close" mat-button (click)="dialogRef.close(false)">X</button>
+        
+        <h1 matDialogTitle> <i class="feather-trash-2"></i> Confirm Delete</h1>
+        <hr>
+        <div matDialogContent>
+            <p>Are you sure you want to delete the Alert '<span class="font-weight-bold" style="color:black;">{{selectedAlgos}}</span>' ?</p>
+        </div>
+        <div matDialogActions class="action-button-align">
+            <button class="btn btn-light align-elements" (click)="dialogRef.close(false)">Cancel
+            </button>
+            <button class="btn btn-primary" cdkFocusInitial (click)="dialogRef.close(true)">
+                Ok
+            </button>
+        </div>
+    </ng-template>
+    <ng-template #deleteAllAlert>
+        <button class="close" mat-button (click)="dialogRef.close(false)">X</button>
+        <h1 matDialogTitle> <i class="feather-trash-2"></i> Confirm Delete</h1>
+        <hr>
+        <div matDialogContent>
+            <p>This will delete only disabled alerts.</p><p *ngIf = "disabledAlert">There are no disabled alerts.</p><p *ngIf = "!(disabledAlert)">Are you sure you want to delete all Disable alerts?</p>
+        </div>
+        <div matDialogActions class="action-button-align">
+            <button class="btn btn-light align-elements" (click)="dialogRef.close(false)">Cancel
+            </button>
+            <button *ngIf = "!disabledAlert" class="btn btn-primary" cdkFocusInitial (click)="dialogRef.close(true)">
+                Ok
+            </button>
+        </div>
+    </ng-template>
+    <ng-template #disableAllDialog>
+        <button class="close" mat-button (click)="dialogRef.close(false)">X</button>
+        <h1 matDialogTitle><i class="fa fa-ban" style="padding:5px"></i>Confirm Disable</h1>
+        <hr>
+        <div matDialogContent>
+            <p>Are you sure you want to Disable all alerts?<br> This will stop triggering all the configured alerts in
+                future.</p>
+        </div>
+        <div matDialogActions class="action-button-align">
+            <button class="btn btn-light align-elements" (click)="dialogRef.close(false)">Cancel
+            </button>
+            <button class="btn btn-primary" cdkFocusInitial (click)="dialogRef.close(true)">
+                Ok
+            </button>
+        </div>
+    </ng-template>
+</div>
+ 
+
+
+
+<!-- <div class="view" *ngIf="chartInkData">
+    <div class="primary-class">
+        <div class="container">
+            <div class="row" >
+                <div class="col-sm-11 offset-sm-0">
+                    <div class="card" style="margin-top: 2rem;">
+
+                        Card content 
+                        <div class="card-body pb-3">
+
+                             Title 
+                            <h2 class="card-title intraday_title">
+                                <i class="fas fa-rupee-sign icon-color"></i>Chart-Ink </h2>
+                            <div class="algo-selection-table">
+                                <i class="fa fa-info-circle info-icon cursor" style="margin-top: 1rem;"
+                                   aria-hidden="true" (click)="tooltip.toggle()"
+                                   #tooltip="matTooltip"
+                                   [matTooltip]=webHookUrl
+                                   matTooltipPosition="after"></i>
+                                <div style="display: flex">
+                                    <div *ngIf="(chartInkData?.dataSource?.value?.length >= 10)"
+                                         matTooltip="Can not add more than 10 Alerts"
+                                         matTooltipPosition="before">
+                                        <button type="button" class="btn btn-primary align-elements"
+                                                [disabled]="chartInkData?.dataSource?.value?.length >= 10"
+                                                (click)="add()">
+                                            <i class="fa fa-plus-circle" aria-hidden="true">&nbsp;Add</i>
+                                        </button>
+                                    </div>
+                                    <button type="button" class="btn btn-primary align-elements"
+                                            *ngIf="!(chartInkData?.dataSource?.value?.length >= 10)"
+                                            (click)="add()">
+                                        <i class="fa fa-plus-circle" aria-hidden="true">&nbsp;Add</i>
+                                    </button>
+                                    <button type="button" class="btn btn-outline-primary align-elements"
+                                            [disabled]="!chartInkData?.dataSource?.value?.length"
+                                            (click)="deleteAll()"><i class="fas fa-trash-alt">&nbsp;Delete All</i>
+                                    </button>
+                                    <button type="button" class="btn btn-outline-primary"
+                                            [disabled]="!chartInkData?.dataSource?.value?.length || disableAlerts"
+                                            (click)="disableAll()"><i class="fa fa-ban" aria-hidden="true">&nbsp;Disable
+                                        All </i>
+                                    </button>
+                                </div>
+                            </div>
+                            <section class="table-responsive h-95 "
+                                     style="border: 0 solid #dee2e6; padding-bottom: 1rem">
+                                <table cdk-table [dataSource]="chartInkData" style="margin-bottom: 0;"
+                                       class="table table-hover table-sm table-row-highlight" *ngIf="chartInkData">
+                                    <ng-container cdkColumnDef="name">
+                                        <th *cdkHeaderCellDef cdk-header-cell>Alert Name
+                                        </th>
+                                        <td cdk-cell *cdkCellDef="let element"
+                                            class="wrap-name td-align" [title]="element.an"> {{element.an}}
+                                        </td>
+                                    </ng-container>
+                                    <ng-container cdkColumnDef="des">
+                                        <th *cdkHeaderCellDef cdk-header-cell>Description
+                                        </th>
+                                        <td cdk-cell *cdkCellDef="let element"
+                                            class="wrap-name td-align" [title]="element.des"> {{element.des}}
+                                        </td>
+                                    </ng-container>
+                                    <ng-container cdkColumnDef="tranType">
+                                        <th *cdkHeaderCellDef cdk-header-cell>Type
+                                        </th>
+                                        <td cdk-cell *cdkCellDef="let element" class="wrap-name td-align">
+                                            {{element.tt}}
+                                        </td>
+                                    </ng-container>
+                                    <ng-container cdkColumnDef="loss">
+                                        <th *cdkHeaderCellDef cdk-header-cell>Loss(%)
+                                        </th>
+                                        <td cdk-cell *cdkCellDef="let element" class="wrap-name td-align">{{element.lp}}
+                                        </td>
+                                    </ng-container>
+                                    <ng-container cdkColumnDef="profit">
+                                        <th *cdkHeaderCellDef cdk-header-cell>Profit(%)
+                                        </th>
+                                        <td cdk-cell *cdkCellDef="let element" class="wrap-name td-align">{{element.pp}}
+                                        </td>
+                                    </ng-container>
+                                    <ng-container cdkColumnDef="qty">
+                                        <th *cdkHeaderCellDef cdk-header-cell>Order Quantity
+                                        </th>
+                                        <td cdk-cell *cdkCellDef="let element" class="wrap-name td-align">{{element.qt}}
+                                        </td>
+                                    </ng-container>
+                                    <ng-container cdkColumnDef="status">
+                                        <th *cdkHeaderCellDef cdk-header-cell>Status
+                                        </th>
+                                        <td cdk-cell *cdkCellDef="let element" class="align-ellipsis">
+                                            <div>
+                                                <mat-slide-toggle color=primary [checked]="element.act"
+                                                                  (change)="changed(element, $event)"></mat-slide-toggle>
+                                            </div>
+                                        </td>
+                                    </ng-container>
+                                    <ng-container cdkColumnDef="action">
+                                        <th *cdkHeaderCellDef cdk-header-cell>Action
+                                        </th>
+                                        <td cdk-cell *cdkCellDef="let element;let i =index;" class="align-ellipsis">
+                                            <i class="fa fa-ellipsis-v cursor highlight-on-hover" aria-hidden="true"
+                                               [matMenuTriggerFor]="appMenu"></i>
+                                            <mat-menu #appMenu="matMenu">
+                                                <button mat-menu-item (click)="deleteAlert(element.aid, element.an)">
+                                                    Delete
+                                                </button>
+                                                <button mat-menu-item [disabled]="element.act"
+                                                        (click)="add(element.aid, true)">View/Edit
+                                                </button>
+                                                <button mat-menu-item (click)="test(element.aid)">Test alert</button>
+                                            </mat-menu>
+                                        </td>
+                                    </ng-container>
+                                    <tr cdk-header-row *cdkHeaderRowDef="addedAlgoTable;sticky:true"
+                                        class="thead-light"></tr>
+                                    <tr #chartInk cdk-row *cdkRowDef="let row; columns: addedAlgoTable;" class="pointer"
+                                        [ngClass]="{'selected':chartInkData.isSelected(row)}"></tr>
+                                </table>
+                                <span *ngIf="!(chartInkData?.dataSource?.value?.length)" class="no-algos">
+                                    Alerts not added. Click add to create new Alert.
+                                </span>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<ng-template #deleteDialog>
+    <button class="close" mat-button (click)="dialogRef.close(false)">X</button>
+    <h1 matDialogTitle>Confirm Delete</h1>
+    <hr>
+    <div matDialogContent>
+        <p>Are you sure you want to delete the Alert?</p>
+        <span class="font-weight-bold">{{selectedAlgos}}</span>
+    </div>
+    <div matDialogActions class="action-button-align">
+        <button class="btn btn-light align-elements" (click)="dialogRef.close(false)">Cancel
+        </button>
+        <button class="btn btn-primary" cdkFocusInitial (click)="dialogRef.close(true)">
+            Ok
+        </button>
+    </div>
+</ng-template>
+<ng-template #deleteAllAlert>
+    <button class="close" mat-button (click)="dialogRef.close(false)">X</button>
+    <h1 matDialogTitle>Confirm Delete</h1>
+    <hr>
+    <div matDialogContent>
+        <p>Are you sure you want to Delete all alerts?</p>
+    </div>
+    <div matDialogActions class="action-button-align">
+        <button class="btn btn-light align-elements" (click)="dialogRef.close(false)">Cancel
+        </button>
+        <button class="btn btn-primary" cdkFocusInitial (click)="dialogRef.close(true)">
+            Ok
+        </button>
+    </div>
+</ng-template>
+<ng-template #disableAllDialog>
+    <button class="close" mat-button (click)="dialogRef.close(false)">X</button>
+    <h1 matDialogTitle>Confirm Disable</h1>
+    <hr>
+    <div matDialogContent>
+        <p>Are you sure you want to Disable all alerts? This will stop triggering all the configured alerts in
+            future.</p>
+    </div>
+    <div matDialogActions class="action-button-align">
+        <button class="btn btn-light align-elements" (click)="dialogRef.close(false)">Cancel
+        </button>
+        <button class="btn btn-primary" cdkFocusInitial (click)="dialogRef.close(true)">
+            Ok
+        </button>
+    </div>
+</ng-template> -->

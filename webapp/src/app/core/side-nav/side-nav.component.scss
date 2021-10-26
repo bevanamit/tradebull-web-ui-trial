@@ -1,0 +1,100 @@
+.dashboard-align {
+  align-self: center;
+  font-size: larger;
+}
+
+.left-panel-block {
+  padding: 12px 16px;
+}
+
+.nav-text {
+  opacity: 1;
+  visibility: visible;
+  position: absolute;
+  top: 12px;
+  color: #b7c0cd;
+  text-align: left;
+  cursor: pointer;
+  font: 400 15px/20px Roboto, "Helvetica Neue", sans-serif;
+  font-stretch: ultra-expanded;
+}
+
+nav {
+  height: 100%; 
+  max-width: 250px; 
+  font-weight:bold; 
+  color:white; 
+  background-color: #263544; 
+  // background-color: #c3e1f7;
+  position: fixed;
+}
+
+.nav-icon {
+  color: #b7c0cd;
+  font-size: 14px;
+  padding: 4px;
+  margin-right: 0;
+  border-radius: 4px;
+  width: 30px;
+  display: inline-flex;
+  align-items: center;
+  height: 30px;
+  text-align: center;
+  cursor: pointer;
+}
+
+a {
+  width: 250px;
+  color: #b7c0cd;
+  text-align: left;
+  padding: 7px 10px 7px 25px;
+  border-radius: 0;
+  margin: 5px 0 5px 0;
+  display: block;
+  font-size: 14px;
+  text-decoration: none;
+  position: relative;
+  cursor: pointer;
+  background-color: transparent;
+  transition: all 0.3s ease;
+}
+
+a:link {
+  color: #b7c0cd;
+}
+
+a:hover {
+  color: white;
+}
+
+.settings-icon {
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 16px;
+  justify-content: flex-end;  
+  width: 40px;
+}
+
+.settings-menu {
+  background-color: rgba(29,37,49,0.5);
+ //background-color: #c3e1f7;
+}
+
+.sidenav-div {
+ // overflow: hidden;
+  max-width: 100%;
+  min-width: 0;
+  max-height: 100%;
+  min-height: 0;
+  display: block;
+  position: relative;
+}
+
+@media not screen and (max-width: 992px) {
+  #mytoggle {
+    display: block !important;
+  } 
+  }
+
+  

@@ -1,0 +1,182 @@
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <div class="main-div">
+        <mat-card class="cardCss">
+            <div class="row">
+                <div class="col-lg-1" style="font-size: 2.5em;">
+                    <i class="feather-settings" style="padding:5px; background-color: #4099ff; border-radius: 10px 10px 10px 10px; color: white;"></i>
+                </div>
+                <div class="col-lg-9">
+                    <mat-card-header class="mat-card-div">         
+                        <mat-card-title style="font-size:25px; font-weight:500px; text-align: left; margin: 10px 0 20px 20px;">Broker Information</mat-card-title> 
+                    </mat-card-header>
+                </div>  
+            </div>
+            <mat-card-content>
+                <form class="example-form" [formGroup]="brokerForm" id="profile">
+                    <div  style="margin-top: 20px;">
+                        <mat-form-field class="example-full-width">
+                            <mat-label for="brokerName">Broker Name<span class="required">*</span></mat-label>
+                                <mat-select formControlName="bn" id="brokerName"
+                                [ngClass]="{ 'is-invalid': f.bn.dirty && f.bn.invalid }">
+                                    <mat-option value="ab">AliceBlue</mat-option> 
+                                    <mat-option value="zrd">Zerodha</mat-option>  
+                                </mat-select>
+                                <app-form-error-container class="invalid-feedback" [control]="brokerForm.get('bn')">
+                                    <app-form-error type="required">
+                                        Broker name is required.
+                                    </app-form-error>
+                                </app-form-error-container>
+                        </mat-form-field>                        
+                    </div>
+                    <div>
+                    <mat-form-field class="example-full-width">
+    
+                        <mat-label *ngIf="brokerForm.get('bn').value=== 'zrd'" for="clientId">{{selectedBroker}} Client Id<span class="required">*</span></mat-label>
+                        <mat-label *ngIf="brokerForm.get('bn').value=== 'ab'" for="clientId">Username<span class="required">*</span></mat-label>
+
+                        <input matInput type="text" formControlName="cId" id="clientId" [placeholder]=placeholderText
+                                    [ngClass]="{ 'is-invalid': f.cId.dirty && f.cId.invalid }">
+                        <app-form-error-container class="invalid-feedback"
+                                    [control]="brokerForm.get('cId')">
+                            <app-form-error type="required">
+                                Value is required.
+                            </app-form-error>
+                            <app-form-error type="maxlength">
+                                Maximum length allowed is 30.
+                            </app-form-error>
+                            <app-form-error type="pattern">
+                                Special characters and Space not allowed.
+                            </app-form-error>
+                        </app-form-error-container>
+                    </mat-form-field>
+                    </div>
+                    <div *ngIf="brokerForm.get('bn').value=== 'zrd'">
+                        <div style="display: flex; justify-content: flex-end; align-items: baseline;">
+                            <button type="button" [disabled]="!brokerForm.get('cId').dirty"
+                                class="form-group btn btn-primary align-elements"
+                                (click)="generateBrokerRegURL()">Generate URLs       
+                            </button>
+                            <i class="fas fa-info" style="color: darkcyan" data-toggle="popover"
+                                title="Want to know how to register us with your broker. Click here"></i>
+                        </div>
+                        <div class="form-group" *ngIf="showUrls">
+                            <div class="text-muted">
+                                <mat-label>Redirect URL &nbsp; :</mat-label>
+                                <span style="margin-right: 0.5rem">&nbsp; {{redirectUrl}}</span>
+                                <i class="far fa-copy copy_clipboard" title="copy"
+                                    [cdkCopyToClipboard]="redirectUrl"></i>
+                            </div>
+                            <div class="text-muted">
+                                <mat-label>Postback URL &nbsp; :</mat-label>
+                                <span style="margin-right: 0.5rem">&nbsp; {{postbackUrl}}</span>
+                                <i class="far fa-copy copy_clipboard" title="copy"
+                                    [cdkCopyToClipboard]="postbackUrl"></i>
+                            </div>
+                        </div>                      
+                    </div>
+                    <div *ngIf="brokerForm.get('bn').value=== 'zrd'">
+                        <mat-form-field class="example-full-width">
+                        <mat-label for="apiKey">API Key<span class="required">*</span></mat-label>
+                        <input matInput type="text" formControlName="aK" id="apiKey"
+                                [ngClass]="{ 'is-invalid': f.aK.dirty && f.aK.invalid }">
+                            <app-form-error-container class="invalid-feedback" [control]="brokerForm.get('aK')">
+                                <app-form-error type="required">
+                                    Value is required.
+                                </app-form-error>
+                                <app-form-error type="pattern">
+                                Space not allowed.
+                                </app-form-error>     
+                            </app-form-error-container>
+                        </mat-form-field>
+                    </div>
+                    <div *ngIf="brokerForm.get('bn').value=== 'ab'">
+                        <mat-form-field class="example-full-width">
+                            <mat-label for="passwd">Password<span
+                                class="required">*</span></mat-label>
+                            <input matInput type="password" formControlName="aK" id="passwd"
+                                [ngClass]="{ 'is-invalid': f.aK.dirty && f.aK.invalid }"/>
+                            <app-form-error-container class="invalid-feedback" [control]="brokerForm.get('aK')">
+                                <app-form-error type="required">
+                                    Value is required.
+                                </app-form-error>
+                                <app-form-error type="pattern">
+                                    Space not allowed.
+                                </app-form-error>
+                            </app-form-error-container>
+                        </mat-form-field>
+                    </div>
+                    <div class="form-group">
+                        <mat-form-field class="example-full-width">
+                            <mat-label for="apiSecret">API Secret<span
+                                class="required">*</span></mat-label>
+                            <input matInput type="password" formControlName="aS" id="apiSecret"
+                                [ngClass]="{ 'is-invalid': f.aS.dirty && f.aS.invalid }"/>
+                            <app-form-error-container class="invalid-feedback" [control]="brokerForm.get('aS')">
+                                <app-form-error type="required">
+                                    Value is required.
+                                    </app-form-error>
+                                    <app-form-error type="pattern">
+                                        Space not allowed.
+                                    </app-form-error>
+                            </app-form-error-container>
+                        </mat-form-field>
+                    </div>
+                    <div class="example-full-width" *ngIf="brokerForm.get('bn').value=== 'zrd'">
+                
+                        <p> Zerodha expects the user to login here everyday to renew their API token. If not done, the trades will get rejected.
+                        </p>
+                        <p style= "font-weight:100;">
+                           <a (click)="knowledgeBase(2)" routerLink="/knowledgeBase" target="_blank" style="cursor: pointer; color: #4099ff">Click here for Zerodha configration instructions</a>
+                        </p>
+                    </div>
+                    <div class="example-full-width" *ngIf="brokerForm.get('bn').value=== 'ab'">  
+                        <p> Aliceblue expects the user to login here everyday to renew their API token. If not done, the trades will get rejected.</p>
+                        <p style= "font-weight:100;">
+                            <a (click)="knowledgeBase(1)" routerLink="/knowledgeBase" target="_blank" style="cursor: pointer; color: #4099ff">Click here for Alice configration instructions</a>
+                        </p>
+                    </div>
+                    <div class="row m-t-25 text-left">
+                        <div col-md-12>
+                            <div class="checkbox-fade fade-in-primary">
+                                <div>
+                                    <mat-checkbox *ngIf="tc else check" color="primary" [disabled]="tc" class="align-self-center" formControlName="tc" name="checkbox" value="check"
+                                            id="agree" matTooltip="Please read T&C."
+                                            matTooltipPosition="above">I read and accept&nbsp;</mat-checkbox>
+                                            <ng-template #check>
+                                                <mat-checkbox color="primary" [disabled]="tc" class="align-self-center" formControlName="tc" name="checkbox" value="check"
+                                                id="agree">I read and accept&nbsp;</mat-checkbox>
+                                            </ng-template>
+                                    <span><a class="link-text" (click)="openDialog()">Terms & Conditions of TradeBull.</a>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div  style="display: flex;align-items: baseline; justify-content: flex-end; padding-top: 10px;">
+                        <button type="button" class="form-group btn btn-cancel align-elements" (click)="skip()">Skip</button>
+                        <button type="button" class="form-group btn btn-primary align-elements" [disabled]="brokerForm.invalid || (brokerForm.get('tc').value === false) || ((showUrls=== false) && brokerForm.get('bn').value=== 'zrd')"
+                            (click)="updateBroker()">Update Broker<span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span></button>
+                    </div>
+                </form>
+            </mat-card-content>
+            
+        </mat-card>
+    </div> 
+
+    <div class="alert-width">
+        <app-alert></app-alert>
+    </div>
+    
+    <ng-template #tcDialog>
+        <button class="close" mat-button (click)="dialogRef.close()">X</button>
+        <h1 matDialogTitle>Terms & Conditions</h1>
+        <hr>
+        <div matDialogContent>
+            <app-terms-conditions></app-terms-conditions>
+        </div>
+        <div matDialogActions class="action-button-align">
+            <button class="btn btn-primary" style="width:100%; padding:10px" cdkFocusInitial (click)="dialogRef.close()">
+                Ok
+            </button>
+        </div>
+    </ng-template>

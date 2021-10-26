@@ -1,0 +1,7 @@
+{
+  "/tb": {
+    "target": "https://tradebullz.in:61987",
+    "secure": false,
+    "logLevel": "debug"
+  }
+}

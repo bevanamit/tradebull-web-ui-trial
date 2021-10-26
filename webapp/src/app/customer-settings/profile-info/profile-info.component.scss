@@ -1,0 +1,109 @@
+body {
+  color: #1a202c;
+  text-align: left;
+  background: #c3e1f7;
+  
+}
+
+.align-elements {
+  margin-right: 0.5rem
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+.mat-card-div {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+
+mat-label {
+  //  color:#333;
+  font-weight: 400;
+  font-size: 14px;        
+}
+
+mat-card-title {
+  text-align: center; 
+  font-size:20px; 
+  font-family: Quicksand,sans-serif;
+  // margin-bottom: 30px;
+}
+
+mat-card-subtitle {
+  font-weight:500; 
+  font-size:15px; 
+  font-family: sans-serif;
+  margin-bottom: 10px;
+}
+
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  // width: 100%;
+}
+
+.example-field-width {
+  width: 90%;
+}
+
+.cardCss {
+  position: fixed;
+  width: 690px;
+  padding: 20px;
+  height: 445px;
+  margin: 60px 30px 30px 30px;  
+}
+
+.matBtn{
+  position: absolute;
+  width: 100%;
+  padding: 5px;
+  cursor: pointer;
+  text-align: right;
+  }
+
+mat-label {
+  //  color:#333;
+  font-weight: 400;
+  font-size: 14px;        
+}
+
+i {
+  size: 50px;
+}
+
+::ng-deep {
+  .mat-form-field .mat-form-field-flex{
+    background-color: white; 
+  }
+}
+
+.feather-user {
+  background-color: transparent !important;
+}
+
+a {
+  cursor: pointer;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  right: 10px;
+    bottom: 0;
+    width: 31px;
+    height: 31px;
+    border-radius: 50%;
+    background: #6772e5;
+    border: 1px solid #fff;
+    color: #fff;
+    font-size: 12px;
+}
+
+::ng-deep {
+  .mat-form-field-appearance-fill .mat-form-field-flex {
+    padding: 0px !important;
+}
+}

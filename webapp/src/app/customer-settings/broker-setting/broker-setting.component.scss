@@ -1,0 +1,57 @@
+
+
+.align-elements {
+  margin-right: 0.5rem
+}
+
+.copy_clipboard {
+  color: darkcyan;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #e9e9e9;
+    border: 1px solid #808080;
+  }
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+mat-checkbox {
+  padding-left: 20px;
+}
+
+.link-text {
+   vertical-align: 10%;
+   font-weight: 500;
+   font-size: 16px;
+   text-align: right!important;
+   font-family: "Open Sans",sans-serif;
+   text-decoration: none;
+   color: #4099ff;
+}
+
+a:link {
+  color: #37474f;
+}
+
+a:hover {
+  color: #4099ff;
+  cursor: pointer;
+}
+
+.tab-pane {
+  min-width: 150px;
+  max-width: 500px;
+}
+
+a {
+  color: #4099ff;
+}
+
+p {
+  font-weight: bold;
+  margin-bottom: 1rem;
+  font-size: 16.5px;
+}

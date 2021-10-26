@@ -1,0 +1,155 @@
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<div class="page">
+        <mat-toolbar class="mattool1">
+            <!-- <mat-toolbar class="mat-elevation-z5"></mat-toolbar> -->
+            <div class="logo-div" >
+               <div class="row" style="justify-content: center;">
+                    <img class="img" style="width: 75%; padding: 10px 10px 10px 10px;" src="../../assets/images/tradebullz_logo.png" alt="tradebull">
+                </div> 
+            </div>
+        </mat-toolbar>
+        <div class="container">
+            <div class="main">
+                <div class="col-md-3 sidebar" style="float:left">
+                    <aside>
+                        <div class="block">
+                            <h2>Topics<hr></h2> 
+                            <li>
+                                <div>
+                                    <a class= "list" (click)= "show(1)">Configuring AliceBlue Broker</a>
+                                </div>
+                                <div>
+                                    <a class= "list" (click)= "show(2)">Configuring Zerodha Broker</a>
+                                </div>
+                                <div>
+                                    <a class= "list" (click)= "show(3)">Configuring ChartInk Alert Action</a>
+                                </div>
+                                <div>
+                                    <a class= "list" (click)= "show(4)"></a>
+                                </div>
+                                <div>
+                                    <a class= "list" (click)= "show(5)"></a>
+                                </div>
+                            </li>
+                        </div>
+                    </aside>
+                </div>
+                <div class="col-md-9" style="float:right">
+                    <aside>
+                        <div *ngIf="(section === 1)" id="alice" style="padding: 30px; margin: 0 0 20px;">
+                            <p>
+                                <b><strong><font size="+2">Configuring AliceBlue Broker</font></strong></b> <br> <br> <br>
+                                <b>Step 1:<br><br> Getting API key for Alice Blue account</b> <br> <br>
+                                You have to send a request by your registered email-id to generate an API Key to api@aliceblueindia.com <br><br>Or you can call AliceBlue Customer Support
+                                <br><br><br>
+                                Sample Email below<br>
+                                -------------------------------------------------------------------------------------------------------------------------------------<br>
+                                Dear team, <br><br>
+                                Kindly find the client id below I am __________________ , i have an account with AliceBlue and my <br><br>account Id is _______, I would like the API service on my account to be enabled.
+                                Kindly enable the <br><br> and share the details. <br><br>
+                                Thanks<br>
+                                -------------------------------------------------------------------------------------------------------------------------------------<br><br><br>
+
+                                <b>Step 2:<br><br> Select the Broker (AliceBlue)</b> <br><br>
+
+                                <img src="../../assets/images/knowledgeBase/brokers/aliceBlue/AliceBlue_01.jpg" alt="alt text" style="float: center"> <br><br><br>
+
+                                <b>Step 3:<br><br> Enter your AliceBlue Client-id for Username and provide your account password</b> <br><br>
+                                <img src="../../assets/images/knowledgeBase/brokers/aliceBlue/AliceBlue_02.jpg" alt="alt text" style="float: center"> <br><br><br>
+                                <b>Step 4:<br><br> Provide the API secret received from AliceBlue which was done in Step 1</b><br><br>
+                                <img src="../../assets/images/knowledgeBase/brokers/aliceBlue/AliceBlue_03.jpg" alt="alt text" style="float: center"> <br><br><br>
+                                <b>Step 5:<br><br> Note that you require to login to Tradebullz.in to generate the Token before the trading session <br>starts for the day, if not done then the orders will get rejected</b><br><br>
+                                <img src="../../assets/images/knowledgeBase/brokers/aliceBlue/AliceBlue_04.jpg" alt="alt text" style="float: center"> <br><br><br>
+                                <b>Step 6:<br><br> Read the Terms and Conditions and Accept the same to proceed to Update your broker details</b><br><br>
+                                <img src="../../assets/images/knowledgeBase/brokers/aliceBlue/AliceBlue_05.jpg" alt="alt text" style="float: center"> <br><br><br>
+                                <b>Step 7:<br><br> Click on <button>Update Broker</button> to Update your broker details</b><br><br>
+                                <img src="../../assets/images/knowledgeBase/brokers/aliceBlue/AliceBlue_06.jpg" alt="alt text" style="float: center"> <br><br><br>
+                             </p>
+                        </div>
+                        <div *ngIf="(section === 2)" id="zerodha" style="padding: 30px; margin: 0 0 20px;">
+                           <p> <b><strong><font size="+2">Configuring Zerodha Broker</font></strong></b> <br><br> <br>
+                           <b>Step 1:<br><br> Select Zerodha Broker in the Broker Information Screen </b><br><br>
+                           <img src="../../assets/images/knowledgeBase/brokers/zerodha/Zerodha_01.jpg" alt="alt text" style="float: center"> <br><br><br>
+                           <b>Step 2:<br><br>Provide your Zerodha Client-Id </b><br><br>
+                           <img src="../../assets/images/knowledgeBase/brokers/zerodha/Zerodha_02.jpg" alt="alt text" style="float: center"> <br><br><br>
+
+                           <b>Step 3:<br><br>Click on <button>Generate URLs</button> button which will generate the Redirect URL and <br>Postback URL as highlighted below</b><br><br>
+                           <img src="../../assets/images/knowledgeBase/brokers/zerodha/Zerodha_03.jpg" alt="alt text" style="float: center"> <br><br><br>
+
+                           <b>Step 4:<br><br>In your Internet browser open https://developers.kite.trade and login with your <br>email account which is registered with Zerodha account. Note: In case you do <br>not have account sign-up using same email which is registered with Zerodha</b><br><br>
+                           <img src="../../assets/images/knowledgeBase/brokers/zerodha/Zerodha_04.jpg" alt="alt text" style="float: center"> <br><br><br>
+
+                           <b>Step 5:<br><br>Once Logged in Click on <button>Create new app</button> button</b><br><br>
+                           <img src="../../assets/images/knowledgeBase/brokers/zerodha/Zerodha_05.jpg" alt="alt text" style="float: center"> <br><br><br>
+
+                           <b>Step 6:<br><br>In the Create a new app window do the following steps </b><br><br>
+                           <b>(1).</b> Select "Connect" option, Note that your Zerodha account will be charged total <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;credits(1 credit is 1 rupee) that is mentioned<br>
+                           <b>(2).</b> Give a name for your app, for ex: MyApp <br>
+                           <b>(3).</b> Provide your Zerodha Client-Id<br>
+                           <b>(4).</b> Copy and Paste the Redirect URL generated in Step 3.<br>
+                           <b>(5).</b> Copy and Paste the Postback URL generated in Step 3.<br>
+                           <b>(6).</b> Click on <button>Create</button> button <br><br>
+                           <img src="../../assets/images/knowledgeBase/brokers/zerodha/Zerodha_06.jpg" alt="alt text" style="float: center"> <br><br><br>
+
+                           <b>Step 7:<br><br>In this step you will have the API Key and API Secret available (Marked 1 and 2)</b><br><br>
+                           <img src="../../assets/images/knowledgeBase/brokers/zerodha/Zerodha_07.jpg" alt="alt text" style="float: center"> <br><br><br>
+
+                           <b>Step 8:<br><br>Provide the API Key and API Secret generated in Step 7 in tradebullz Broker <br>Information (ones marked in Yellow)</b><br><br>
+                           <img src="../../assets/images/knowledgeBase/brokers/zerodha/Zerodha_08.jpg" alt="alt text" style="float: center"> <br><br><br>
+
+                           <b>Step 9:<br><br>Read the Terms and Conditions and Accept the same to proceed and click on <br><button>Update Broker</button> button to save your broker details</b><br><br>
+                           <img src="../../assets/images/knowledgeBase/brokers/zerodha/Zerodha_09.jpg" alt="alt text" style="float: center"> <br><br><br>
+                        </p>
+
+
+                        </div>
+                        <div *ngIf="(section === 3)" id="chartInk" style="padding: 30px; margin: 0 0 20px;">
+                            <p>
+                                <b><strong><font size="+2">Configuring ChartInk Alert Action</font></strong></b> <br> <br> <br>
+                                <b>Step 1:<br><br> You need to have a screener/filter created in www.chartink.com <br>
+                                the screener / filter looks like below</b> <br> <br>
+                                <img src="../../assets/images/knowledgeBase/chartink/chartink_01.jpg" alt="alt text" style="float: center"> <br><br><br>
+                                <b>Step 2:<br><br> Create an Alert by clicking on <button>Create Alert</button> button </b><br><br>
+                                <img src="../../assets/images/knowledgeBase/chartink/chartink_02.jpg" alt="alt text" style="float: center"> <br><br><br>
+                                <b>Step 3:<br><br>From the Chart-Ink page in tradebullz.in copy your "Chartink connector Link" </b><br><br>
+                                <img src="../../assets/images/knowledgeBase/chartink/chartink_03.jpg" alt="alt text" style="float: center"> <br><br><br>
+                                <b>Step 4:<br><br>In the Chartink Alert, In “Notification to be sent Over” select “Desktop/Mobile (web) option</b><br><br>
+                                <img src="../../assets/images/knowledgeBase/chartink/chartink_04.jpg" alt="alt text" style="float: center"> <br><br><br>
+                                <b>Step 5:<br><br>Paste the Chartink connector link copied from Step 3 to "Webhook url"</b><br><br>
+                                <img src="../../assets/images/knowledgeBase/chartink/chartink_05.jpg" alt="alt text" style="float: center"> <br><br><br>
+                                <b>Step 6:<br><br>It is always recommended to have the Notification to be Unique as shown below</b><br><br>
+                                <img src="../../assets/images/knowledgeBase/chartink/chartink_06.jpg" alt="alt text" style="float: center"> <br><br><br>
+                                <b>Step 7:<br><br>Save the Alert and Copy the Alert Name from the highlighted below</b><br><br>
+                                <img src="../../assets/images/knowledgeBase/chartink/chartink_07.jpg" alt="alt text" style="float: center"> <br><br><br>
+                                <b>Step 8:<br><br>In your tradebullz account, click on "Chart-Ink" in the left Navigation Panel</b><br><br>
+                                <img src="../../assets/images/knowledgeBase/chartink/chartink_08.jpg" alt="alt text" style="float: center"> <br><br><br>
+                                <b>Step 9:<br><br>Now add a Trade Action for your chart-ink alert, Click on <button>Add</button> button</b><br><br>
+                                <img src="../../assets/images/knowledgeBase/chartink/chartink_09.jpg" alt="alt text" style="float: center"> <br><br><br>
+                                <b>Step 10:<br><br>In the "Add Action" pop-up follow the below steps </b><br><br>
+                                <b>(a).</b> Provide “Alert name” same as the one saved in www.chartink.com which was copied in Step 7 <br>
+                                <b>(b).</b> Provide a proper description for your understanding about the Action <br>
+                                <b>(c).</b> Choose the "Transaction Type" depending on the type of your Alert Long / Short (Buy / Sell) <br>
+                                <b>(d).</b> Provide the Percent of "Profit" you want to exit the Trade at (for All the stocks traded with this <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Alert they will be exited at the Profit percentage mentioend here) <br>
+                                <b>(e).</b> Provide the Percent of "Loss" you want to exit the Trade at (this is the Stop Loss for all the <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Trades done for the respective Alert)<br>
+                                <b>(f).</b> Provide the Quantity to trade (for all stocks to be traded this will be the quantity)<br>
+                                <b>(g).</b> Click on <button>Save</button> button <br><br>
+                                <img src="../../assets/images/knowledgeBase/chartink/chartink_10.jpg" alt="alt text" style="float: center"> <br><br><br>
+                                <b>Step 11:<br><br>Your Trade Action on alert from www.chartink.com is saved and ready to be Enabled now</b><br><br>
+                                <img src="../../assets/images/knowledgeBase/chartink/chartink_11.jpg" alt="alt text" style="float: center"> <br><br><br>
+                                <b>Step 12:<br><br>Clicking on Toggle enables the Action and th Action waits for Trigger from your alert<br> from  www.chartink.com</b><br><br>
+                                <img src="../../assets/images/knowledgeBase/chartink/chartink_12.jpg" alt="alt text" style="float: center"> <br><br><br>
+                                
+                            </p>
+                        </div>
+                        <div *ngIf="(section === 4)" style="padding: 30px; margin: 0 0 20px;">
+                            <p></p>
+                        </div>
+                        <div *ngIf="(section === 5)" style="padding: 30px; margin: 0 0 20px;">
+                            <p></p>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </div>
+</div>
+

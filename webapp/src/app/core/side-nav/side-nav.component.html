@@ -1,0 +1,79 @@
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<nav id="mytoggle" class="w3-collapse w3-large">
+    <div class="sidenav-div">
+        <a routerLink="/home/dashboard" (click)="onExpand();" routerLinkActive="active">
+            <span class="nav-icon">
+                <i class="feather feather-home mr-2"></i>
+            </span>
+            <span class="nav-text">Dashboard</span>
+          </a>
+        <a routerLink="/home/tradebullz-algorithms" (click)="onExpand();" routerLinkActive="active">
+          <span class="nav-icon">
+              <i class="feather feather-trending-up mr-2"></i>
+          </span>
+          <span class="nav-text">Tradebullz-Algorithms</span>
+        </a>
+        <a  routerLink="/home/chart-ink" (click)="onExpand();" routerLinkActive="active">
+            <span class="nav-icon">
+                <i class="feather-bar-chart-2"></i>
+            </span>
+            <span class="nav-text">Chart-Ink</span>
+        </a>
+        <a routerLink="/home/watchlist" (click)="onExpand();" routerLinkActive="active">
+            <span class="nav-icon">
+                <i class="feather feather-eye mr-2"></i>
+            </span>
+            <span class="nav-text">Watchlist</span>
+        </a>
+        <!-- <a style="margin: 5px 0 0 0" mat-button class="settings" id="settings" (click)="onExpand()"> -->
+        <a routerLink="/home/settings/profile" (click)="onExpand();" routerLinkActive="active" class="settings">
+            <span class="nav-icon">
+                <i class="feather feather-settings mr-2"></i>
+            </span>
+            <span class="nav-text">Settings</span>
+            <!-- <span>
+                <div id="chevron-right">
+                    <a mat-button (click)="onExpand()" class="settings-icon">
+                        <i class="feather-chevron-right"  style="vertical-align: 30%;">
+                        </i>
+                    </a>
+                </div>
+                <div id="chevron-down" style="display: none;">
+                    <a mat-button (click)="onExpand()" class="settings-icon">
+                        <i class="feather-chevron-down"  style="vertical-align: 30%;">
+                        </i>
+                    </a>
+                </div> 
+            </span> -->
+        </a>
+        <div id="menu" class="settings-menu" style="display: none;">
+            <a style="margin: 0 0 5px 0" routerLink="/home/settings/profile" routerLinkActive="active">
+                <span class="nav-icon">
+                    <i class="feather-chevron-right"></i>
+                </span>
+                <span class="nav-text">Profile</span>
+              </a>
+              <a routerLink="/home/settings/broker" routerLinkActive="active">
+                <span class="nav-icon">
+                    <i class="feather-chevron-right"></i>
+                </span>
+                <span class="nav-text">Broker settings</span>
+              </a>
+              <a routerLink="/home/settings/security" routerLinkActive="active">
+                <span class="nav-icon">
+                    <i class="feather-chevron-right"></i>
+                </span>
+                <span class="nav-text">Security</span>
+              </a>
+              <a routerLink="/home/settings/payment" routerLinkActive="active">
+                <span class="nav-icon">
+                    <i class="feather-chevron-right"></i>
+                </span>
+                <span class="nav-text">Billing</span>
+              </a>
+        </div>
+    </div>
+  <!--<div class="slimScrollBar" style="background: rgb(0, 0, 0); width: 5px; position: absolute; top: 0px; opacity: 0.4; display: block; border-radius: 7px; z-index: 99; right: 1px; height: 100%;"></div>
+    <div class="slimScrollRail" style="width: 5px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;"></div> -->
+</nav>
+

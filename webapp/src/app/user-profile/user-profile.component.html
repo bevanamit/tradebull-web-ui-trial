@@ -1,0 +1,97 @@
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <div class="main-div">
+        <mat-card class="cardCss">
+            <div class="row">
+                <div class="col-lg-1" style="font-size: 3em;">
+                    <i class="feather-user" style="border-radius: 10px 10px 10px 10px; color: white;"></i>
+                </div>
+                <div class="col-lg-9">
+                    <mat-card-header class="mat-card-div">         
+                        <mat-card-title style="font-size:25px; font-weight:500px; text-align: left; margin: 10px 0 20px 15px;">Profile Information</mat-card-title>
+                    </mat-card-header>
+                </div>  
+            </div>
+            <mat-card-content>
+                <form class="example-form" [formGroup]="profileForm" id="profile">
+                    <div style="margin-top: 20px;">
+                    <mat-form-field class="example-full-width">
+                        <mat-label for="fullName">First Name<span class="required">*</span></mat-label>
+                        <input #firstName matInput type="text" id="fullName" placeholder="" formControlName="fn" 
+                            [ngClass]="{'is-invalid': f.fn.dirty && f.fn.invalid }">
+                        <app-form-error-container class="invalid-feedback" [control]="profileForm.get('fn')">
+                            <!-- <app-form-error type="required">
+                                First name is required
+                            </app-form-error> -->
+                            <app-form-error type="maxlength">
+                                Maximum 50 characters allowed
+                            </app-form-error>
+                            <app-form-error type="pattern">
+                                Special characters not allowed.
+                            </app-form-error>
+                            <app-form-error type="checkspaceAtStartEnd">
+                                Space not allowed at start.
+                            </app-form-error>
+                        </app-form-error-container>
+                    </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field class="example-full-width">
+                        <mat-label for="nickName">Last Name<span class="required">*</span></mat-label>
+                        <input matInput type="text" id="nickName" placeholder="" formControlName="ln" 
+                                [ngClass]="{ 'is-invalid': f.ln.dirty && f.ln.invalid }">
+                            <app-form-error-container class="invalid-feedback"
+                                                        [control]="profileForm.get('ln')">
+                                <app-form-error type="pattern">
+                                    Special characters not allowed.
+                                </app-form-error>
+                                <app-form-error type="maxlength">
+                                    Maximum 50 characters allowed
+                                </app-form-error>
+                                <app-form-error type="checkspaceAtStartEnd">
+                                    Space not allowed at start.
+                                </app-form-error>
+                            </app-form-error-container>
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field class="example-full-width">
+                            <mat-label for="gender">Gender<span class="required">*</span></mat-label>
+                                <mat-select formControlName="gdr" id="gender">
+                                    <!-- <mat-option value="" disabled selected>Select</mat-option> -->
+                                    <mat-option value="M">Male</mat-option>
+                                    <mat-option value="F">Female</mat-option>  
+                                    <mat-option value="O">Other</mat-option>  
+                                </mat-select> 
+                        </mat-form-field>
+                    </div>
+                    
+                    <div>
+                        <mat-form-field appearance="fill" class="example-full-width">
+                            <mat-label for="dob">Date of Birth<span class="required">*</span></mat-label>
+                                <input matInput type="text" formControlName="dob" [max]="maxDate" [min]="minDate" [matDatepicker]="picker" id="date" placeholder="dd/mm/yyyy"
+                                [ngClass]="{ 'is-invalid': f.dob.dirty && f.dob.invalid }">
+                                <app-form-error-container class="invalid-feedback"
+                                                        [control]="profileForm.get('dob')">
+                                    <app-form-error type="checkForFutureDates">
+                                        Age should be more than 10 years
+                                    </app-form-error>
+                                    <app-form-error type="checkForPastDates">
+                                        Age should not be more than 100 years
+                                    </app-form-error>
+                                    <!-- <app-form-error type="checkForInvalidYear">
+                                        Year can't be more than 4 digits.
+                                    </app-form-error> -->
+                                </app-form-error-container>
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>                                                                
+                    </div>
+                    <div style="display: flex;align-items: baseline; justify-content: flex-end;">
+                            <button type="button" class="form-group btn btn-cancel align-elements" (click)="skip()">Skip</button>
+                            <button type="button" class="form-group btn btn-primary align-elements" [disabled]="profileForm.invalid" (click)="updateProfile()">Save Changes<span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span></button>
+                    </div>    
+                </form>
+            </mat-card-content>
+            
+        </mat-card>
+    </div>

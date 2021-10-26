@@ -1,0 +1,7 @@
+<div *ngIf="message" [ngClass]="message.cssClass">{{message.text}}
+    <button type="button" class="close" (click)="closeAlert()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<!-- <div *ngIf="msg" style="color: #f02849; font-size: 13px;" class="d-flex justify-content-start">{{msg.text}}</div> -->

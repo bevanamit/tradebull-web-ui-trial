@@ -1,0 +1,121 @@
+$primary-blue: #1776bf;
+//$primary-blue: #c3e1f7;
+$almost-black: #333333;
+$white: #FFFFFF;
+
+.primary-class {
+  height: 100vh;
+  background: #f2f7fb;
+}
+
+.login-register {
+  height: 100%;
+  background-color: whitesmoke;
+  //background: -webkit-linear-gradient(bottom, #0250c5, #d43f8d);
+}
+
+.card {
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .1), 0 1px 2px 0 rgba(0, 0, 0, .06);
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: white;
+  background-clip: border-box;
+  border: 0 solid rgba(0, 0, 0, .125);
+  border-radius: .25rem;
+  margin-top: 2rem
+}
+
+.card-body {
+  flex: 1 1 auto;
+  min-height: 1px;
+  padding: 1rem;
+}
+
+.required {
+  color: #dc3545;
+}
+
+.table-row-highlight {
+  width: 99.9% !important;
+  border-bottom: 1px solid #dee2e6;
+
+  & > tbody {
+    & > tr.selected > td {
+      border-top: 1px solid $primary-blue;
+      border-bottom: 1px solid $primary-blue;
+      background-color: #4BAD4B;;
+
+      &:first-child {
+        border-left: 1px solid $primary-blue;
+      }
+
+      &:last-child {
+        border-right: 1px solid $primary-blue;
+      }
+    }
+  }
+
+  & > thead > tr > th {
+    border-bottom: none;
+  }
+
+  & > thead > tr > td {
+    vertical-align: inherit;
+  }
+
+  & > thead > tr > th.cdk-table-sticky {
+    border-bottom: none;
+    top: -1px !important;
+  }
+
+  .cdk-row:nth-child(odd) {
+    background-color: #96d9f424;
+  }
+
+  .cdk-row {
+    height: 3rem;
+  }
+
+  .thead-light {
+    line-height: 2rem;
+    color: whitesmoke;
+  }
+}
+
+.cursor {
+  cursor: pointer;
+}
+
+.alert-width {
+    position: fixed;
+    right: 0;
+    top: 4rem;
+    margin: .5rem 1rem;
+    z-index: 10001;
+}
+
+.h-95 {
+  max-height: 95%;
+}
+
+.action-button-align {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 0.2rem;
+  //margin-top: 1rem;
+}
+
+.align-elements {
+  margin-right: 0.7rem
+}
+
+.info-icon {
+  color: deeppink;
+  font-size: larger
+}
